@@ -43,20 +43,23 @@ export default {
         </div>
         <div class="language">
             lingua originale: 
-            <!-- {{ movie.original_language }} -->
-            <img
+            {{ movie.original_language }}
+            <!-- <img
                 :src="showFlagImage(movie.original_language)"
                 width="20"
                 height="15"
-        >
+        > -->
         </div>
         <div class="rating">
             voto: {{ movie.vote_average }}
         </div>
-        <img 
+        <img v-if="movie.poster_path != null"
             :src="`${this.store.posterUrl}${movie.poster_path}`" 
             alt=""
         >
+        <div v-else>
+            !!immagine non troavata!!
+        </div>
 
     </div>
 
