@@ -56,7 +56,6 @@ export default {
     :movie="currentMovie"
    >
    </MovieItem>
-
  </div>
 
 </template>

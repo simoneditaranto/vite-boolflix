@@ -6,6 +6,25 @@ export default {
     props:{
         movie: Object,
     },
+
+    data() {
+        return {
+            
+        }
+    },
+
+    methods: {
+
+        showFlagImage(flagName) {
+
+            flagName == 'en' ? flagName = 'gb-eng' : flagName = flagName;
+            let urlFlag = `https://flagcdn.com/20x15/${flagName}.png`
+            
+
+            return urlFlag;
+        }
+
+    }
 }
 
 </script>
@@ -21,7 +40,12 @@ export default {
             titolo-originale: {{ movie.original_title }}
         </div>
         <div class="language">
-            lingua originale: {{ movie.original_language }}
+            lingua originale: 
+            <img
+                :src="showFlagImage(movie.original_language)"
+                width="20"
+                height="15"
+        >
         </div>
         <div class="rating">
             voto: {{ movie.vote_average }}
