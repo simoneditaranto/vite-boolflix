@@ -18,9 +18,9 @@ export default {
 
     <div id="search-item">
         <label for="">Cerca il film:</label>
-        <input type="text" placeholder="Inserisci il titolo di un film">
+        <input type="text" placeholder="Inserisci il titolo di un film" v-model="this.store.userTitleMovie">
 
-        <button class="btn">Cerca</button>
+        <button class="btn" @click="$emit('search')">Cerca</button>
     </div>
 
 </template>
@@ -41,6 +41,8 @@ export default {
 
     input{
         padding: 0 10px;
+
+        font-size: .8em;
 
         color: black;
 
