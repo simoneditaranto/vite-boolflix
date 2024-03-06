@@ -1,4 +1,5 @@
 <script>
+import { store } from '../store.js';
 
 export default {
     name: 'SeriesItem',
@@ -9,7 +10,7 @@ export default {
 
     data() {
         return {
-            
+            store,
         }
     },
 
@@ -52,6 +53,10 @@ export default {
         <div class="rating">
             voto: {{ series.vote_average }}
         </div>
+        <img 
+            :src="`${this.store.posterUrl}${series.poster_path}`" 
+            alt=""
+        >
 
     </div>
 

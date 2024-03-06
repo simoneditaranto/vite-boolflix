@@ -9,4 +9,7 @@ export const store = reactive({
     // stringa che contiene la scelta dell'utente
     userTitleMovie: '',
 
+    // stringa poster url condivisa da MovieItem e SeriesItem
+    posterUrl: 'https://image.tmdb.org/t/p/w342',
+
 })
