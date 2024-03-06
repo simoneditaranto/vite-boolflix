@@ -5,12 +5,14 @@ import { store } from './store.js'
 
 import SearchItem from './components/SearchItem.vue';
 import MovieItem from './components/MovieItem.vue';
+import SeriesItem from './components/SeriesItem.vue';
 
 export default {
 
   components: {
     SearchItem,
     MovieItem,
+    SeriesItem,
   },
 
   data() {
@@ -25,16 +27,20 @@ export default {
 
     searchMoviesByTitle() {
       if(this.store.userTitleMovie.trim() != '') {
-        
         axios.get(`https://api.themoviedb.org/3/search/movie?api_key=145d04767bf0a6995a595c480bbd094f&query=${this.store.userTitleMovie}`)
         .then(res => {
           this.store.movies = res.data.results;
-          // console.log(this.store.movies);
-          // test
+        })
+
+        
+        axios.get(`https://api.themoviedb.org/3/search/tv?api_key=145d04767bf0a6995a595c480bbd094f&query=${this.store.userTitleMovie}`)
+        .then(res => {
+          this.store.series = res.data.results;
         })
         
       } else {
         this.store.movies = [];
+        this.store.series = [];
       } 
     }
 
@@ -56,6 +62,12 @@ export default {
     :movie="currentMovie"
    >
    </MovieItem>
+
+   <SeriesItem
+    v-for="currentSeries in this.store.series"
+    :series="currentSeries"
+   >
+   </SeriesItem>
  </div>
 
 </template>

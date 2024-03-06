@@ -1,10 +1,10 @@
 <script>
 
 export default {
-    name: 'MovieItem',
+    name: 'SeriesItem',
 
     props:{
-        movie: Object,
+        series: Object,
     },
 
     data() {
@@ -33,24 +33,24 @@ export default {
 <template>
 
     <div id="movie">
-        <div class="type">FILM</div>
+        <div class="type">SERIE</div>
         <div class="title">
-            titolo: {{ movie.title }}
+            titolo: {{ series.name }}
         </div>
         <div class="original-title">
-            titolo-originale: {{ movie.original_title }}
+            titolo-originale: {{ series.original_name }}
         </div>
         <div class="language">
             lingua originale: 
-            <!-- {{ movie.original_language }} -->
+            <!-- {{ series.original_language }} -->
             <img
-                :src="showFlagImage(movie.original_language)"
+                :src="showFlagImage(series.original_language)"
                 width="20"
                 height="15"
         >
         </div>
         <div class="rating">
-            voto: {{ movie.vote_average }}
+            voto: {{ series.vote_average }}
         </div>
 
     </div>
