@@ -2,6 +2,10 @@
 
 export default {
     name: 'MovieItem',
+
+    props:{
+        movie: Object,
+    },
 }
 
 </script>
@@ -11,16 +15,16 @@ export default {
     <div id="movie">
 
         <div class="title">
-            titolo:
+            titolo: {{ movie.title }}
         </div>
         <div class="original-title">
-            titolo-originale:
+            titolo-originale: {{ movie.original_title }}
         </div>
         <div class="language">
-            lingua:
+            lingua originale: {{ movie.original_language }}
         </div>
         <div class="rating">
-            voto: 
+            voto: {{ movie.vote_average }}
         </div>
 
     </div>
@@ -34,6 +38,8 @@ export default {
     padding: 15px;
 
     width: 30%;
+
+    border: 1px solid white;
 
     font-size: 1.2em;
     font-weight: bold;
