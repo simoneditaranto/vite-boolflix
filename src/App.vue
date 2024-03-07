@@ -51,5 +51,9 @@ export default {
 .movies-list{
   display: flex;
   flex-wrap: wrap;
+
+  max-width: 1400px;
+
+  margin: 0 auto;
 }
 </style>

@@ -22,19 +22,58 @@
 
 // elemento movie/serie (stilizzazioni di test)
 #movie{
-  padding: 15px;
-
-  width: 30%;
+  width: calc(100% / 4);
 
   border: 1px solid white;
 
-  font-size: 1.2em;
-  font-weight: bold;
+  .info{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 
-  background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
 
-  .type{
-      color: red;
+    /* display: none; */
+    color: white;
+
+    background-color: black;
+
+    span{
+      font-weight: bold;
+    }
+
+    .type{
+        color: red;
+    }
+
+    .language{
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .rating{
+      display: flex;
+      align-items: center;
+
+      .rating-stars {
+        font-size: 1.8em;
+  
+        color: #FFBD00;
+      }
+     
+    }
+
+  }
+
+  .poster{
+    display: none;
+    width: 100%;
+
+    img{
+      width: 100%;
+    }
   }
 }
 

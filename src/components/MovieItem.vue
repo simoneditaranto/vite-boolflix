@@ -34,37 +34,44 @@ export default {
 <template>
 
     <div id="movie">
-        <div class="type">FILM</div>
-        <div class="title">
-            titolo: {{ movie.title }}
+        <div class="info">
+            <div class="type">FILM</div>
+            <div class="title">
+                <span>titolo:</span> {{ movie.title }}
+            </div>
+            <div class="original-title">
+                <span>titolo-originale:</span> {{ movie.original_title }}
+            </div>
+            <div class="language">
+                <span>lingua originale:</span> 
+                <img
+                    :src="showFlagImage(movie.original_language)"
+                    width="20"
+                    height="15"
+                >
+            </div>
+            <div class="overview">
+                <span>Descrizione:</span>
+                {{ movie.overview }}
+            </div>
+            
+            <div class="rating">
+                <span>voto:</span>
+                <div class="rating-stars">
+                    <span v-for="star in this.store.showRatedStars(movie.vote_average)">&#9733;</span>
+                </div>
+            </div>
         </div>
-        <div class="original-title">
-            titolo-originale: {{ movie.original_title }}
-        </div>
-        <div class="language">
-            lingua originale: 
-            <!-- {{ movie.original_language }} -->
-            <img
-                :src="showFlagImage(movie.original_language)"
-                width="20"
-                height="15"
+        
+        <div class="poster">
+            <img v-if="movie.poster_path != null"
+                :src="`${this.store.posterUrl}${movie.poster_path}`" 
+                alt=""
             >
+            <div v-else>
+                !!immagine non troavata!!
+            </div>
         </div>
-        <div class="rating">
-            voto: {{ movie.vote_average }}
-        </div>
-        <img v-if="movie.poster_path != null"
-            :src="`${this.store.posterUrl}${movie.poster_path}`" 
-            alt=""
-        >
-        <div v-else>
-            !!immagine non troavata!!
-        </div>
-
-        <div class="rated-stars">
-            <span v-for="star in this.store.showRatedStars(movie.vote_average)">&#9733;</span>
-        </div>
-
     </div>
 
 </template>
