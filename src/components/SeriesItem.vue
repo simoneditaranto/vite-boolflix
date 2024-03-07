@@ -43,12 +43,12 @@ export default {
         </div>
         <div class="language">
             lingua originale: 
-            {{ series.original_language }}
-            <!-- <img
+            <!-- {{ series.original_language }} -->
+            <img
                 :src="showFlagImage(series.original_language)"
                 width="20"
                 height="15"
-        > -->
+            >
         </div>
         <div class="rating">
             voto: {{ series.vote_average }}
@@ -60,6 +60,10 @@ export default {
         >
         <div v-else>
             !!immagine non troavata!!
+        </div>
+
+        <div class="rated-stars">
+            <span v-for="star in this.store.showRatedStars(series.vote_average)">&#9733;</span>
         </div>
 
     </div>

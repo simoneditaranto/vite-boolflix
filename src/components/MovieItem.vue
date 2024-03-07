@@ -24,7 +24,11 @@ export default {
             
 
             return urlFlag;
-        }
+        },
+
+        // stelle(voto) {
+            
+        // },
 
     }
 }
@@ -43,12 +47,12 @@ export default {
         </div>
         <div class="language">
             lingua originale: 
-            {{ movie.original_language }}
-            <!-- <img
+            <!-- {{ movie.original_language }} -->
+            <img
                 :src="showFlagImage(movie.original_language)"
                 width="20"
                 height="15"
-        > -->
+            >
         </div>
         <div class="rating">
             voto: {{ movie.vote_average }}
@@ -59,6 +63,10 @@ export default {
         >
         <div v-else>
             !!immagine non troavata!!
+        </div>
+
+        <div class="rated-stars">
+            <span v-for="star in this.store.showRatedStars(movie.vote_average)">&#9733;</span>
         </div>
 
     </div>

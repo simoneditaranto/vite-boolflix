@@ -12,4 +12,10 @@ export const store = reactive({
     // stringa poster url condivisa da MovieItem e SeriesItem
     posterUrl: 'https://image.tmdb.org/t/p/w342',
 
+
+    showRatedStars(rated) {
+        console.log(Math.floor((rated * 5) / 10));
+        return rated = Math.floor((rated * 5) / 10);
+    },
+
 })
