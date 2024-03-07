@@ -11,6 +11,9 @@ export default {
     data() {
         return {
             store,
+
+            // variabile che gestisce l'hover sui film/serie
+            isHover: true,
         }
     },
 
@@ -26,6 +29,7 @@ export default {
             return urlFlag;
         },
 
+
     }
 }
 
@@ -34,7 +38,7 @@ export default {
 <template>
 
     <div id="movie">
-        <div class="info">
+        <div class="info" v-if="!isHover" @mouseleave="isHover = true">
             <div class="type">FILM</div>
             <div class="title">
                 <span>titolo:</span> {{ movie.title }}
@@ -63,7 +67,12 @@ export default {
             </div>
         </div>
         
-        <div class="poster">
+        <div 
+            class="poster"
+            @mouseenter="isHover = false"
+            @mouseleave="isHover = true"
+            v-if="isHover"
+        >
             <img v-if="movie.poster_path != null"
                 :src="`${this.store.posterUrl}${movie.poster_path}`" 
                 alt=""

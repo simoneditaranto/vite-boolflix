@@ -11,6 +11,9 @@ export default {
     data() {
         return {
             store,
+
+            // variabile che gestisce l'hover sui film/serie
+            isHover: true,
         }
     },
 
@@ -34,13 +37,13 @@ export default {
 <template>
 
 <div id="movie">
-        <div class="info">
+        <div class="info" v-if="!isHover" @mouseleave="isHover = true">
             <div class="type">FILM</div>
             <div class="title">
-                <span>titolo:</span> {{ series.title }}
+                <span>titolo:</span> {{ series.name }}
             </div>
             <div class="original-title">
-                <span>titolo-originale:</span> {{ series.original_title }}
+                <span>titolo-originale:</span> {{ series.name }}
             </div>
             <div class="language">
                 <span>lingua originale:</span> 
@@ -63,13 +66,18 @@ export default {
             </div>
         </div>
         
-        <div class="poster">
+        <div 
+            class="poster"
+            @mouseenter="isHover = false"
+            @mouseleave="isHover = true"
+            v-if="isHover"
+        >
             <img v-if="series.poster_path != null"
                 :src="`${this.store.posterUrl}${series.poster_path}`" 
                 alt=""
             >
-            <div v-else>
-                !!immagine non troavata!!
+            <div v-else style="color: black;">
+                {{ series.name }}
             </div>
         </div>
     </div>
