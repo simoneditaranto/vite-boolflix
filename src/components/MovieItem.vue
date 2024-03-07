@@ -26,10 +26,6 @@ export default {
             return urlFlag;
         },
 
-        // stelle(voto) {
-            
-        // },
-
     }
 }
 

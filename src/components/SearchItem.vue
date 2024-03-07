@@ -17,7 +17,7 @@ export default {
 <template>
 
     <div id="search-item">
-        <label for="">Cerca il film:</label>
+        <label for="">Cerca il film o la serie tv:</label>
         <input 
             type="text" 
             placeholder="Inserisci il titolo di un film" v-model="this.store.userTitleMovie" 
@@ -35,10 +35,9 @@ export default {
 #search-item {
     display: flex;
 
-    margin-bottom: 20px;
-    /* test */
-
     font-size: 1.5em;
+
+    color: white;
     label{
         margin-right: 10px;
     }

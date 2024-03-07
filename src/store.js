@@ -14,7 +14,6 @@ export const store = reactive({
 
 
     showRatedStars(rated) {
-        console.log(Math.floor((rated * 5) / 10));
         return rated = Math.floor((rated * 5) / 10);
     },
 
