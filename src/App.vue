@@ -2,15 +2,13 @@
 import { store } from './store.js'
 
 import AppNav from './components/AppNav.vue';
-import MovieItem from './components/MovieItem.vue';
-import SeriesItem from './components/SeriesItem.vue';
+import AppCard from './components/AppCard.vue';
 
 export default {
 
   components: {
-    MovieItem,
-    SeriesItem,
     AppNav,
+    AppCard,
   },
 
   data() {
@@ -31,17 +29,17 @@ export default {
  <AppNav></AppNav>
 
  <div class="movies-list">
-   <MovieItem
+   <AppCard
     v-for="currentMovie in this.store.movies"
-    :movie="currentMovie"
+    :item="currentMovie"
    >
-   </MovieItem>
+   </AppCard>
 
-   <SeriesItem
+   <AppCard
     v-for="currentSeries in this.store.series"
-    :series="currentSeries"
+    :item="currentSeries"
    >
-   </SeriesItem>
+   </AppCard>
  </div>
 
 </template>

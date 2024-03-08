@@ -6,6 +6,8 @@ export const store = reactive({
     movies: [],
     series: [],
 
+    idMovies: [],
+
     // stringa che contiene la scelta dell'utente
     userTitleMovie: '',
 
