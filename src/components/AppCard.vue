@@ -8,6 +8,8 @@ export default {
 
     props:{
         item: Object,
+        movieCast: Array,  
+        seriesCast: Array,
     },
 
     data() {
@@ -17,7 +19,7 @@ export default {
             // variabile che gestisce l'hover sui film/serie
             isHover: true,
 
-            cast: [],
+            // cast: [],
         }
     },
 
@@ -28,38 +30,53 @@ export default {
             flagName == 'en' ? flagName = 'gb-eng' : flagName = flagName;
             flagName == 'ja' ? flagName = 'jp' : flagName = flagName;
             let urlFlag = `https://flagcdn.com/20x15/${flagName}.png`
-            
 
             return urlFlag;
         },
 
-        stampaID(id) {
-            console.log(id)
-            this.store.movies.forEach(element => {
-                if(element.id == id) {
-                    // posso fare la chiamata api qui sugli attori
-                    axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=145d04767bf0a6995a595c480bbd094f`)
-                    .then(result => {
-                        console.log(result.data.cast)
-                        for(let i = 0; i < 5 ; i++) {
-                            this.cast.push(result.data.cast[i].name);
-                        }
-                    })
-                    console.log(this.cast)
-                }
-            })
+        showCast(id) {
+            //  console.log("showcast");
+            // // test
+            // // chiamata api che mi restituisce il cast del film/serie
+            // this.cast.splice(0)
+            // axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=145d04767bf0a6995a595c480bbd094f`)
+            // .then(result => {
+            //     // i primi 5 risultati
+            //     for(let i = 0; i < 5 ; i++) {
+            //         this.cast.push(result.data.cast[i].name);
+            //     }
+            // });
+            // console.log("1", this.cast);
+            // return 'cast';
+            // test
+            // return this.cast
+            // if(this.store.cast && this.store.cast.includes(id)) {
+              
+            //     console.log("cast");
+            //     let actors = '';
+            //     for(let i = 0; i < 5; i++) {
+            //         // this.store.cast[id][i];
+            //         actors += this.store.cast[id][i].name + '';
+            //     }
+            //     return actors;
+
+            // }
         },
 
+        
 
-    }
+
+    },
+
 }
 
 </script>
 
 <template>
 
-    <div id="item" @click="stampaID(item.id)">
+    <div id="item" >
         <div class="info" v-if="!isHover" @mouseleave="isHover = true">
+            <div class="type">{{ item.title ? 'film' : 'serie tv' }}</div>
             <div class="title">
                 <span>titolo:</span> {{ item.title ? item.title : item.name }}
             </div>
@@ -85,6 +102,13 @@ export default {
                     <span v-for="star in this.store.showRatedStars(item.vote_average ? item.vote_average : item.vote_average)">&#9733;</span>
                 </div>
             </div>
+
+            <div class="cast">
+                <span>cast:</span>
+                <div class="actor" v-for="currentActor in movieCast ? movieCast : seriesCast">
+                    {{ currentActor.name }}
+                </div>
+            </div>
         </div>
         
         <div 
@@ -93,14 +117,15 @@ export default {
             @mouseleave="isHover = true"
             v-if="isHover"
         >
-            <img v-if="item.poster_path != null"
-                :src="`${this.store.posterUrl}${item.poster_path ? item.poster_path : item.poster_path}`" 
+            <img v-if="item.poster_path"
+                :src="`${this.store.posterUrl}${item.poster_path}`" 
                 alt=""
             >
             <div v-else>
                 !!immagine non troavata!!
             </div>
         </div>
+
 
         
     </div>
@@ -131,6 +156,12 @@ export default {
         background-color: black;
 
         overflow-y: auto;
+
+        .type{
+            text-transform: uppercase;
+            
+            color: red;
+        }
 
         span{
             font-weight: bold;
