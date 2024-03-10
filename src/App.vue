@@ -31,13 +31,13 @@ export default {
  <div class="movies-list">
    <AppCard
     v-for="(currentMovie,index) in this.store.movies"
-    :item="currentMovie"  :movieCast="this.store.movieCast[index]" 
+    :item="currentMovie"  :movieCast="this.store.movieCast[index]" :movieGenres="this.store.movieGenres[index]"
    >
    </AppCard>
 
    <AppCard
     v-for="(currentSeries,index) in this.store.series"
-    :item="currentSeries" :seriesCast="this.store.seriesCast[index]"
+    :item="currentSeries" :seriesCast="this.store.seriesCast[index]" :seriesGenres="this.store.seriesGenres[index]"
    >
    </AppCard>
  </div>

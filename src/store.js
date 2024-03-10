@@ -4,9 +4,15 @@ export const store = reactive({
 
     // array che contiene i film generati dall'API
     movies: [],
-    series: [],
     movieCast: [],
+    movieGenres: [],
+    arrayTemp: [],
+    series: [],
     seriesCast: [],
+    seriesGenres: [],
+
+    allMovieGenre: [],
+    allSeriesGenres: [],
 
    
 

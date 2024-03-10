@@ -10,6 +10,8 @@ export default {
         item: Object,
         movieCast: Array,  
         seriesCast: Array,
+        movieGenres: Array,
+        seriesGenres: Array,
     },
 
     data() {
@@ -33,37 +35,6 @@ export default {
 
             return urlFlag;
         },
-
-        showCast(id) {
-            //  console.log("showcast");
-            // // test
-            // // chiamata api che mi restituisce il cast del film/serie
-            // this.cast.splice(0)
-            // axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=145d04767bf0a6995a595c480bbd094f`)
-            // .then(result => {
-            //     // i primi 5 risultati
-            //     for(let i = 0; i < 5 ; i++) {
-            //         this.cast.push(result.data.cast[i].name);
-            //     }
-            // });
-            // console.log("1", this.cast);
-            // return 'cast';
-            // test
-            // return this.cast
-            // if(this.store.cast && this.store.cast.includes(id)) {
-              
-            //     console.log("cast");
-            //     let actors = '';
-            //     for(let i = 0; i < 5; i++) {
-            //         // this.store.cast[id][i];
-            //         actors += this.store.cast[id][i].name + '';
-            //     }
-            //     return actors;
-
-            // }
-        },
-
-        
 
 
     },
@@ -107,6 +78,13 @@ export default {
                 <span>cast:</span>
                 <div class="actor" v-for="currentActor in movieCast ? movieCast : seriesCast">
                     {{ currentActor.name }}
+                </div>
+            </div>
+
+            <div class="movie-genres">
+                <span>Genere:</span>
+                <div class="genre" v-for="currentGenre in movieGenres ? movieGenres : seriesGenres">
+                    {{ currentGenre }}
                 </div>
             </div>
         </div>
