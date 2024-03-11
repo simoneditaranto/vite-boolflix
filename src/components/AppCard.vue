@@ -21,7 +21,7 @@ export default {
             // variabile che gestisce l'hover sui film/serie
             isHover: true,
 
-            // cast: [],
+            
         }
     },
 
@@ -36,6 +36,9 @@ export default {
             return urlFlag;
         },
 
+        showFullStars(rated) {
+            return rated = Math.floor((rated * 5) / 10);
+        },
 
     },
 
@@ -56,7 +59,7 @@ export default {
             </div>
             <div class="language">
                 <span>lingua originale:</span> 
-                <img
+                <img v-if="showFlagImage(item.original_language)"
                     :src="showFlagImage(item.original_language ? item.original_language : item.original_language)"
                     width="20"
                     height="15"
@@ -70,7 +73,8 @@ export default {
             <div class="rating">
                 <span>voto:</span>
                 <div class="rating-stars">
-                    <span v-for="star in this.store.showRatedStars(item.vote_average ? item.vote_average : item.vote_average)">&#9733;</span>
+                    <span class="full-stars" v-for="star in showFullStars(item.vote_average ? item.vote_average : item.vote_average)">&#9733;</span>
+                    <span class="empty-stars" v-for="star in (5 - showFullStars(item.vote_average ? item.vote_average : item.vote_average))">&#9733;</span>
                 </div>
             </div>
 
@@ -99,8 +103,8 @@ export default {
                 :src="`${this.store.posterUrl}${item.poster_path}`" 
                 alt=""
             >
-            <div v-else>
-                !!immagine non troavata!!
+            <div class="image-not-found" v-else>
+                &#128683;
             </div>
         </div>
 
@@ -116,7 +120,7 @@ export default {
 #item{
     width: calc(100% / 4);
 
-    border: 1px solid white;
+    border: 1px solid grey;
 
     overflow-y: hidden;
 
@@ -156,9 +160,13 @@ export default {
             align-items: center;
 
             .rating-stars {
-            font-size: 1.8em;
+                font-size: 1.8em;
 
-            color: #FFBD00;
+                .full-stars{
+                    color: #FFBD00;
+
+                }
+
             }
             
         }
@@ -166,8 +174,19 @@ export default {
     }
 
     .poster{
+        position: relative;
+
         width: 100%;
         height: 500px;
+
+        .image-not-found{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+            font-size: 5em;
+        }
 
     img{
         width: 100%;
